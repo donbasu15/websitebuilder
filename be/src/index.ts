@@ -12,7 +12,7 @@ const anthropic = new Anthropic();
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173", // or "*" for all origins (not recommended for production)
+    origin: "https://websitebuilder-8u3i.vercel.app", // or "*" for all origins (not recommended for production)
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
@@ -78,7 +78,7 @@ app.post("/chat", async (req, res) => {
     },
   });
 
-  console.log(response.text);
+  // console.log(response.text);
 
   res.json({
     response: response.text,
