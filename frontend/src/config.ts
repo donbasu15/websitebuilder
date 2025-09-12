@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://websitebuilder-alpha.vercel.app/";
+export const BACKEND_URL = "https://websitebuilder-tau.vercel.app/";
