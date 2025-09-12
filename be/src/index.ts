@@ -12,7 +12,9 @@ const anthropic = new Anthropic();
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173", // or "*" for all origins (not recommended for production)
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
   })
 );
 app.use(express.json());
