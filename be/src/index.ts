@@ -15,6 +15,10 @@ app.use(express.json());
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+app.get("/", (req, res) => {
+  res.json("Hello");
+});
+
 app.post("/template", async (req, res) => {
   const prompt = req.body.prompt;
   console.log(prompt);
