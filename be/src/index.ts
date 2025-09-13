@@ -9,10 +9,7 @@ import { GoogleGenAI } from "@google/genai";
 const app = express();
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://animated-malabi-a856c5.netlify.app/",
-    ], // or "*" for all origins (not recommended for production)
+    origin: "*", // or "*" for all origins (not recommended for production)
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
