@@ -1,8 +1,4 @@
-let WebContainer: any = undefined;
-if (typeof window !== "undefined") {
-  // Only import in browser
-  WebContainer = require("@webcontainer/api").WebContainer;
-}
+// Remove require, use dynamic import in main()
 import React, { useEffect, useState } from "react";
 
 interface PreviewFrameProps {
@@ -19,6 +15,10 @@ export function PreviewFrame({ files, webContainer }: PreviewFrameProps) {
       console.error("WebContainer is not available in this environment.");
       return;
     }
+    // Dynamically import @webcontainer/api if needed
+    // If you need to instantiate WebContainer, do it here
+    // Example: const { WebContainer } = await import("@webcontainer/api");
+
     const installProcess = await webContainer.spawn("npm", ["install"]);
 
     installProcess.output.pipeTo(
@@ -32,7 +32,7 @@ export function PreviewFrame({ files, webContainer }: PreviewFrameProps) {
     await webContainer.spawn("npm", ["run", "dev"]);
 
     // Wait for `server-ready` event
-    webContainer.on("server-ready", (port, url) => {
+    webContainer.on("server-ready", (port: any, url: any) => {
       // ...
       console.log(url);
       console.log(port);
