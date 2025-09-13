@@ -1,18 +1,15 @@
 require("dotenv").config();
 import express from "express";
-import Anthropic from "@anthropic-ai/sdk";
 import { BASE_PROMPT, getSystemPrompt } from "./prompts";
-import { ContentBlock, TextBlock } from "@anthropic-ai/sdk/resources";
 import { basePrompt as nodeBasePrompt } from "./defaults/node";
 import { basePrompt as reactBasePrompt } from "./defaults/react";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 
-const anthropic = new Anthropic();
 const app = express();
 app.use(
   cors({
-    origin: "https://websitebuilder-8u3i.vercel.app", // or "*" for all origins (not recommended for production)
+    origin: ["http://localhost:5173", "https://websitebuilder-8u3i.vercel.app"], // or "*" for all origins (not recommended for production)
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })

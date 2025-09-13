@@ -1,9 +1,13 @@
-import { WebContainer } from "@webcontainer/api";
+let WebContainer: any = undefined;
+if (typeof window !== "undefined") {
+  // Only import in browser
+  WebContainer = require("@webcontainer/api").WebContainer;
+}
 import React, { useEffect, useState } from "react";
 
 interface PreviewFrameProps {
   files: any[];
-  webContainer: WebContainer;
+  webContainer: any;
 }
 
 export function PreviewFrame({ files, webContainer }: PreviewFrameProps) {
@@ -11,8 +15,8 @@ export function PreviewFrame({ files, webContainer }: PreviewFrameProps) {
   const [url, setUrl] = useState("");
 
   async function main() {
-    if (!webContainer) {
-      console.error("webContainer is undefined");
+    if (typeof window === "undefined" || !webContainer) {
+      console.error("WebContainer is not available in this environment.");
       return;
     }
     const installProcess = await webContainer.spawn("npm", ["install"]);
